@@ -39,10 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'corsheaders',
+    'django_seed',
+    'django_filters',
     'rest_framework',
     'rest_framework_simplejwt',
     'tasks.apps.TasksConfig',
     'authapp.apps.AuthappConfig',
+    'tasks_viewset.apps.TasksViewsetConfig',
 ]
 
 MIDDLEWARE = [
@@ -140,6 +143,11 @@ CORS_ALLOWED_ORIGINS = [
 REST_FRAMEWORK ={
     "DEFAULT_AUTHENTICATION_CLASSES":[
         "rest_framework_simplejwt.authentication.JWTAuthentication"
+    ],
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
+    "PAGE_SIZE": 100,
+    "DEFAULT_FILTER_BACKENDS": [
+        'django_filters.rest_framework.DjangoFilterBackend'
     ]
 }
 
